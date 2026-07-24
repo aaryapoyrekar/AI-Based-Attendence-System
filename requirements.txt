@@ -16,3 +16,6 @@ segno #QR code generation using URL
 pillow #image processing
 
 streamlit #web app framework
+
+librosa
+resemblyzer

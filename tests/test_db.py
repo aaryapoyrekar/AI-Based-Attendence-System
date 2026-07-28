@@ -17,6 +17,14 @@ class DatabaseFallbackTests(unittest.TestCase):
         with patch.object(db, "supabase", None):
             self.assertFalse(db.check_teacher_exists("teacher"))
 
+    def test_get_student_subjects_returns_empty_when_supabase_unavailable(self):
+        with patch.object(db, "supabase", None):
+            self.assertEqual(db.get_student_subjects("student-1"), [])
+
+    def test_get_student_attendence_returns_empty_when_supabase_unavailable(self):
+        with patch.object(db, "supabase", None):
+            self.assertEqual(db.get_student_attendence("student-1"), [])
+
 
 if __name__ == "__main__":
     unittest.main()

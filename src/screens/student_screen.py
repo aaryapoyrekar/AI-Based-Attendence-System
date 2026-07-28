@@ -66,7 +66,7 @@ def student_dashboard():
         def unenroll_button():
             if st.button("Unenroll from this course", type='tertiary', width='stretch', icon=':material/delete_forever:'):
                 unenroll_student_to_subject(student_id, sid)
-                st.toast(f'Unenrolled from {sub['name']} successfully!')
+                st.toast(f"Unenrolled from {sub['name']} successfully!")
                 st.rerun()
 
         with cols[i % 2]:

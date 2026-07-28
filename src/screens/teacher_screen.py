@@ -73,7 +73,35 @@ def teacher_dashboard():
     footer_dashboard()
 
 def teacher_tab_take_attendence():
+    teacher_id = st.session_state.teacher_data['teacher_id']
     st.header('Take AI Attendence')
+
+    if 'attendence_images' not in st.session_state:
+        st.session_state.attendence_images = []
+
+    subjects = get_teacher_subjects(teacher_id)
+
+    if not subjects:
+        st.warning('You havent created any subjects yet! Please creat one to begin!')
+        return
+    subject_options = {f"{s['name']} - {s['subject_code']}": s['subject_id'] for s in subjects}
+
+    col1, col2 = st.columns([3,1])
+
+    with col1:
+        selected_subjects_label = st.selectbox('Select Subject', options=list(subject_options.keys()))
+
+    with col2:
+        if st.button('Add Photos', type='primary', icon=':material/photo_prints:', width='stretch'):
+            add_photo_dialog()
+
+    selected_subject_id = subject_options[selected_subjects_label]
+
+    st.divider()
+
+
+
+
 
 def teacher_tab_manage_subjects():
     teacher_id = st.session_state.teacher_data['teacher_id']
